@@ -1,3 +1,6 @@
-[submodule "zstd"]
-	path = cpp/zstd
+[submodule "extern/zstd"]
+	path = lib/zstd-codec-core/extern/zstd
 	url = https://github.com/facebook/zstd
+[submodule "src/zstd-codec-node/extern/node-addon-api"]
+	path = src/zstd-codec-node/extern/node-addon-api
+	url = https://github.com/nodejs/node-addon-api
