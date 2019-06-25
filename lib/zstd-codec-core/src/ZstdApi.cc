@@ -1,5 +1,11 @@
-#include "zstd_codec_core/ZstdApi.h"
 #include "zstd.h"
+#include "zstd_codec_core/ZstdApi.h"
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// ZstdApiResult
+//
+////////////////////////////////////////////////////////////////////////////////
 
 ZstdApiResult ZstdApiResult::ok(usize code) {
     return {true, code};
@@ -24,6 +30,12 @@ usize ZstdApiResult::code() const {
 ZstdApiResult::ZstdApiResult(bool ok, usize code)
         : ok_(ok), code_(code) {
 }
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// ZstdApi
+//
+////////////////////////////////////////////////////////////////////////////////
 
 ZstdApiResult ZstdApi::compress(Vec<u8> &dest, const Vec<u8> &src, int level) const {
     const auto max_size = ZSTD_compressBound(src.size());

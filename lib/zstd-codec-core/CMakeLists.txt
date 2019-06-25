@@ -13,21 +13,27 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(HEADER_FILES
         src/lib.h
         include/zstd_codec_core/ZstdApi.h
+        include/zstd_codec_core/ZstdDict.h
+        include/zstd_codec_core/ZstdStream.h
         include/zstd_codec_core/types.h
         )
 
 set(SOURCE_FILES
         src/lib.cc
-        src/ZstdApi.cc)
+        src/ZstdApi.cc
+        src/ZstdDict.cc
+        src/ZstdStream.cc
+        )
 
 add_library(${PROJECT_NAME}
         ${HEADER_FILES}
         ${SOURCE_FILES})
 add_library(core::lib ALIAS ${PROJECT_NAME})
 
+get_property(ZSTD_INCLUDE_DIRS TARGET libzstd_static PROPERTY INCLUDE_DIRECTORIES)
 target_include_directories(${PROJECT_NAME}
         PRIVATE
-        extern/zstd/lib
+        ${ZSTD_INCLUDE_DIRS}
         )
 
 target_include_directories(${PROJECT_NAME}
